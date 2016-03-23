@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require './lib/expect_call'
+require './lib/expect-call'
 require "minitest/mock"
 
 class TestExpectCall < Minitest::Test
