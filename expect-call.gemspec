@@ -1,3 +1,5 @@
+$:.push File.expand_path('../lib', __FILE__)
+
 Gem::Specification.new do |s|
   s.name        = 'expect-call'
   s.version     = '0.1.0'
