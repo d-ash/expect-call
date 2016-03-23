@@ -7,7 +7,6 @@ Gem::Specification.new do |s|
   s.authors     = ["Andrew Shubin"]
   s.email       = 'andrey.shubin@gmail.com'
   s.files       = ["lib/expect-call.rb"]
-  s.require_paths = ["lib"]
   s.homepage    = 'https://github.com/d-ash/expect-call'
   s.license       = 'MIT'
 end
