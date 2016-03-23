@@ -11,18 +11,18 @@ class Object
     orig_method = nil
     orig_method = method( method_name ) if respond_to? method_name
 
-    was_called = false
-
-    new_method = Proc.new do |*args|
-      was_called = true
-
-      #
-      # Returning methods back after the call.
-      #
+    clean_up = Proc.new do
       metaclass.send :undef_method, method_name
       if orig_method
         metaclass.send :define_method, method_name, orig_method
       end
+    end
+
+    was_called = false
+
+    new_method = Proc.new do |*args|
+      was_called = true
+      clean_up.call
 
       assert_method.call params == args,
         "Params do not match\n  Expected: %s\n    Actual: %s" % [ params.inspect, args.inspect ]
@@ -40,15 +40,6 @@ class Object
 
     assert_method.call was_called, "Was not called: #{ method_name }"
   ensure
-    #
-    # If the method was not called we return everything back now.
-    #
-    unless was_called
-      metaclass.send :undef_method, method_name
-
-      if orig_method
-        metaclass.send :define_method, method_name, orig_method
-      end
-    end
+    clean_up.call unless was_called
   end
 end
