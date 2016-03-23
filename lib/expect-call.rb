@@ -1,7 +1,7 @@
 class Object
   #
   # Partial mocking.
-  # Stubs a regular object and expects a specific call on it.
+  # Stubs a regular object and expects a certain call on it.
   #
   def expect_call( method_name, params, val_or_callable, &block )
     assert_method = block.binding.eval( 'self' ).method( :assert )
