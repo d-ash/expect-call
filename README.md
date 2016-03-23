@@ -1,0 +1,2 @@
+# expect-call
+Partial mocking.
