@@ -1,5 +1,3 @@
-$:.push File.expand_path('../lib', __FILE__)
-
 Gem::Specification.new do |s|
   s.name        = 'expect-call'
   s.version     = '0.1.0'
@@ -9,7 +7,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Andrew Shubin"]
   s.email       = 'andrey.shubin@gmail.com'
   s.files       = ["lib/expect-call.rb"]
-  s.homepage    =
-    'https://github.com/d-ash/expect-call'
+  s.require_paths = ["lib"]
+  s.homepage    = 'https://github.com/d-ash/expect-call'
   s.license       = 'MIT'
 end
