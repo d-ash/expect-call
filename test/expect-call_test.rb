@@ -72,4 +72,18 @@ class TestExpectCall < Minitest::Test
       end
     end
   end
+
+  def test_provides_its_own_assertion
+    metaclass = class << self; self; end
+
+    metaclass.send :alias_method, :orig_assert, :assert
+    metaclass.send :undef_method, :assert
+
+    @obj.expect_call :something, [ 'FOO' ], nil do
+      @obj.something( 'FOO' )
+    end
+
+    metaclass.send :alias_method, :assert, :orig_assert
+    metaclass.send :undef_method, :orig_assert
+  end
 end
