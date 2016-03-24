@@ -1,8 +1,4 @@
 class Object
-  #
-  # Partial mocking.
-  # Stubs a regular object and expects a certain call on it.
-  #
   def expect_call( method_name, params, val_or_callable, &block )
     context = block.binding.eval( 'self' )
 
