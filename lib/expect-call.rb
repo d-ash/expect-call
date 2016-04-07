@@ -13,7 +13,11 @@ class Object
     metaclass = class << self; self; end
 
     orig_method = nil
-    orig_method = method( method_name ) if respond_to? method_name
+
+    if respond_to? method_name
+      orig_method = method( method_name )
+      metaclass.send :undef_method, method_name
+    end
 
     clean_up = Proc.new do
       metaclass.send :undef_method, method_name

@@ -29,7 +29,7 @@ class TestExpectCall < Minitest::Test
     metaclass = class << self; self; end
 
     mocked_assert = Proc.new do |comparison, message|
-      if message.match /^Params do not match/
+      if message.match( /^Params do not match/ )
         orig_assert comparison === false, 'Params should have been checked'
       end
     end
@@ -41,6 +41,7 @@ class TestExpectCall < Minitest::Test
       @obj.something( 'FOO' )
     end
 
+    metaclass.send :undef_method, :assert
     metaclass.send :alias_method, :assert, :orig_assert
     metaclass.send :undef_method, :orig_assert
   end
@@ -49,7 +50,7 @@ class TestExpectCall < Minitest::Test
     metaclass = class << self; self; end
 
     mocked_assert = Proc.new do |comparison, message|
-      if message.match /^Was not called/
+      if message.match( /^Was not called/ )
         orig_assert comparison === false, 'Should have checked that the call was done'
       end
     end
@@ -60,6 +61,7 @@ class TestExpectCall < Minitest::Test
     @obj.expect_call :something, [ 'PARAM' ], 'RETURN' do
     end
 
+    metaclass.send :undef_method, :assert
     metaclass.send :alias_method, :assert, :orig_assert
     metaclass.send :undef_method, :orig_assert
   end
