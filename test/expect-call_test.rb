@@ -88,4 +88,10 @@ class TestExpectCall < Minitest::Test
     metaclass.send :alias_method, :assert, :orig_assert
     metaclass.send :undef_method, :orig_assert
   end
+
+  def test_default_return_value_is_nil
+    @obj.expect_call :something, [ 'FOO' ] do
+      assert_equal nil, @obj.something( 'FOO' )
+    end
+  end
 end

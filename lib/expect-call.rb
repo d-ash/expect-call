@@ -1,5 +1,5 @@
 class Object
-  def expect_call( method_name, params, val_or_callable, &block )
+  def expect_call( method_name, params, val_or_callable = nil, &block )
     context = block.binding.eval( 'self' )
 
     if context.respond_to?( :assert )
