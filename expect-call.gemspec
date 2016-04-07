@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'expect-call'
-  s.version     = '0.1.0'
-  s.date        = '2016-03-23'
+  s.version     = '0.1.1'
+  s.date        = '2016-04-07'
   s.summary     = "Partial mocking (expect a method call)"
   s.description = "Stubs a regular object's method and expects a certain call to it."
   s.authors     = ["Andrew Shubin"]
